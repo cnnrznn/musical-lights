@@ -36,10 +36,20 @@
   (let [query {:id tid}]
     (spc/get-audio-analysis-for-a-track query token)))
 
+(defn print-ident
+  [x]
+  (pp/pprint x)
+  x)
+
 (defn -main
   [& args]
   (->> "high hopes"
        (search-track)
+       print-ident
        :id
        req-analysis
+       :sections
+       (map (fn [{:keys [start confidence]}]
+              {:start start
+               :confidence confidence}))
        pp/pprint))
