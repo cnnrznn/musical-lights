@@ -1,7 +1,6 @@
 (ns spotify-react.core
   (:require [clj-spotify [util :as spu]
-                         [core :as spc]
-                         [analysis :as spa]]
+                         [core :as spc]]
             [clojure.pprint :as pp]))
 
 (def client-id "29b14ddace06413b96fb9c904c89b706")
@@ -35,8 +34,7 @@
 (defn req-analysis
   [tid]
   (let [query {:id tid}]
-    (pp/pprint query)
-    (spa/get-audio-analysis query token)))
+    (spc/get-audio-analysis-for-a-track query token)))
 
 (defn -main
   [& args]
